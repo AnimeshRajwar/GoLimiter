@@ -8,10 +8,9 @@ import (
 )
 
 func main() {
-	var rl limiter.RateLimiter
 
-	rl = limiter.NewFixedWindow(5, 24*time.Second)
-
+	rl := limiter.NewFixedWindow(5, 24*time.Second, 40*time.Second)
+	rl.StartCleanupWorker()
 	user := "user-123"
 
 	for i := 0; i < 20; i++ {
